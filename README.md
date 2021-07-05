@@ -4,7 +4,7 @@ This repository is responsible for load testing of Plio environments.
 ## Installation
 1. Create a new EC2 instance
     1. OS: Ubuntu 20.04 amdx64 LTS
-    2. Type: t3.large (or based on your preference)
+    2. Type: r5.large (or based on your preference)
     3. Security group: should only have SSH port open
 2. Add the EC2 IP to the DNS provider firewall protocol so that it doesn't get blocked due to request limits.
 3. SSH into the EC2 instance and run the following commands
