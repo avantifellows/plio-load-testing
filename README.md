@@ -31,5 +31,8 @@ This repository is responsible for load testing of Plio environments.
     cd plio-load-testing/tests
 
     # run the load testing script
-    k6 run script.js
+    k6 run script_file.js
+
+    # run the load testing script with ACCESS TOKEN
+    k6 run -e ACCESS_TOKEN=your_access_token script_file.js
     ```
