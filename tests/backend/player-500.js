@@ -29,6 +29,7 @@ var params = {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
     },
+    timeout: '600s'
 };
 
 export default function (data) {
