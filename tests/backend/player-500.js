@@ -40,13 +40,23 @@ export default function (data) {
 
     // request plio and plio items
     let plio = http.get(plioPlayEndpoint, params).json();
-    http.get(itemsEndpoint, params);
+    check(plio, {
+        'plio get responses have status 200': (response) => response.status === 200,
+    });
+
+    let item = http.get(itemsEndpoint, params);
+    check(item, {
+        'item get responses have status 200': (response) => response.status === 200,
+    });
 
     // create user session
     let sessionPayload = {
         'plio': plio.id,
     };
     let session = http.post(sessionsEndpoint, JSON.stringify(sessionPayload), params).json();
+    check(session, {
+        'session create responses have status 201': (response) => response.status === 201,
+    });
 
     let eventTypes = ['watching', 'question_proceed', 'question_answered', 'paused', 'video_seeked'];
     let eventPayload = {
@@ -61,7 +71,10 @@ export default function (data) {
     let random = 5;
     for (let count = 1; count <= random; count++) {
         eventPayload['type'] = randomItem(eventTypes);
-        http.post(eventsEndpoint, JSON.stringify(eventPayload), params);
+        let eventResponse = http.post(eventsEndpoint, JSON.stringify(eventPayload), params);
+        check(eventResponse, {
+            'event create responses have status 201': (response) => response.status === 201,
+        });
         sleep(randomIntBetween(1,2));
     }
 
@@ -76,7 +89,10 @@ export default function (data) {
     random = 5;
     for (let count = 1; count <= random; count++) {
         sessionPayload['retention'] = sessionPayload['retention'] + ',' + randomIntBetween(0, 3);
-        http.put(sessionsEndpoint + `${session.id}/`, JSON.stringify(sessionPayload), params);
+        let sessionResponse = http.put(sessionsEndpoint + `${session.id}/`, JSON.stringify(sessionPayload), params);
+        check(sessionResponse, {
+            'session update responses have status 200': (response) => response.status === 200,
+        });
         sleep(randomIntBetween(1,2));
     }
 
