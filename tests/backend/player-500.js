@@ -70,8 +70,7 @@ export default function (data) {
     };
 
     // create random number of user generated events
-    // let random = randomIntBetween(5, 10);
-    let random = 5;
+    let random = randomIntBetween(5, 10);
     for (let count = 1; count <= random; count++) {
         eventPayload['type'] = randomItem(eventTypes);
         let eventCreateResponse = http.post(eventsEndpoint, JSON.stringify(eventPayload), params);
@@ -88,8 +87,7 @@ export default function (data) {
     }
 
     // update user session random times
-    // random = randomIntBetween(5, 10);
-    random = 5;
+    random = randomIntBetween(5, 10);
     for (let count = 1; count <= random; count++) {
         sessionPayload['retention'] = sessionPayload['retention'] + ',' + randomIntBetween(0, 3);
         let sessionUpdateResponse = http.put(sessionsEndpoint + `${session.id}/`, JSON.stringify(sessionPayload), params);
