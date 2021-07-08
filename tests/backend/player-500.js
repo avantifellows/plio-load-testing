@@ -38,14 +38,16 @@ export default function (data) {
     let sessionsEndpoint = apiEndpoint + '/sessions/';
     let eventsEndpoint = apiEndpoint + '/events/';
 
-    // request plio and plio items
-    let plio = http.get(plioPlayEndpoint, params).json();
-    check(plio, {
+    // request plio
+    let plioResponse = http.get(plioPlayEndpoint, params);
+    let plio = plioResponse.json()
+    check(plioResponse, {
         'plio get responses have status 200': (response) => response.status === 200,
     });
 
-    let item = http.get(itemsEndpoint, params);
-    check(item, {
+    // request plio items
+    let itemResponse = http.get(itemsEndpoint, params);
+    check(itemResponse, {
         'item get responses have status 200': (response) => response.status === 200,
     });
 
@@ -53,8 +55,9 @@ export default function (data) {
     let sessionPayload = {
         'plio': plio.id,
     };
-    let session = http.post(sessionsEndpoint, JSON.stringify(sessionPayload), params).json();
-    check(session, {
+    let sessionCreateResponse = http.post(sessionsEndpoint, JSON.stringify(sessionPayload), params);
+    let session = sessionCreateResponse.json();
+    check(sessionCreateResponse, {
         'session create responses have status 201': (response) => response.status === 201,
     });
 
@@ -71,8 +74,8 @@ export default function (data) {
     let random = 5;
     for (let count = 1; count <= random; count++) {
         eventPayload['type'] = randomItem(eventTypes);
-        let eventResponse = http.post(eventsEndpoint, JSON.stringify(eventPayload), params);
-        check(eventResponse, {
+        let eventCreateResponse = http.post(eventsEndpoint, JSON.stringify(eventPayload), params);
+        check(eventCreateResponse, {
             'event create responses have status 201': (response) => response.status === 201,
         });
         sleep(randomIntBetween(1,2));
@@ -89,8 +92,8 @@ export default function (data) {
     random = 5;
     for (let count = 1; count <= random; count++) {
         sessionPayload['retention'] = sessionPayload['retention'] + ',' + randomIntBetween(0, 3);
-        let sessionResponse = http.put(sessionsEndpoint + `${session.id}/`, JSON.stringify(sessionPayload), params);
-        check(sessionResponse, {
+        let sessionUpdateResponse = http.put(sessionsEndpoint + `${session.id}/`, JSON.stringify(sessionPayload), params);
+        check(sessionUpdateResponse, {
             'session update responses have status 200': (response) => response.status === 200,
         });
         sleep(randomIntBetween(1,2));
