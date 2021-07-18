@@ -54,6 +54,12 @@ export default function (data) {
     check(itemResponse, {
         'item get responses have status 200': (response) => response.status === 200,
     });
+    if (itemResponse.status != 200) {
+        console.log("itemResponse");
+        console.log(itemResponse.status);
+        console.log(itemResponse.body);
+        console.log(itemResponse);
+    }
 
     // create user session
     let sessionPayload = {
@@ -64,6 +70,12 @@ export default function (data) {
     check(sessionCreateResponse, {
         'session create responses have status 201': (response) => response.status === 201,
     });
+    if (sessionCreateResponse.status != 201) {
+        console.log("sessionCreateResponse");
+        console.log(sessionCreateResponse.status);
+        console.log(sessionCreateResponse.body);
+        console.log(sessionCreateResponse);
+    }
 
     let eventTypes = ['watching', 'question_proceed', 'question_answered', 'paused', 'video_seeked'];
     let eventPayload = {
@@ -81,6 +93,12 @@ export default function (data) {
         check(eventCreateResponse, {
             'event create responses have status 201': (response) => response.status === 201,
         });
+        if (eventCreateResponse.status != 201) {
+            console.log("eventCreateResponse");
+            console.log(eventCreateResponse.status);
+            console.log(eventCreateResponse.body);
+            console.log(eventCreateResponse);
+        }
         sleep(randomIntBetween(1,2));
     }
 
@@ -98,6 +116,12 @@ export default function (data) {
         check(sessionUpdateResponse, {
             'session update responses have status 200': (response) => response.status === 200,
         });
+        if (sessionUpdateResponse.status != 200) {
+            console.log("sessionUpdateResponse");
+            console.log(sessionUpdateResponse.status);
+            console.log(sessionUpdateResponse.body);
+            console.log(sessionUpdateResponse);
+        }
         sleep(randomIntBetween(1,2));
     }
 
