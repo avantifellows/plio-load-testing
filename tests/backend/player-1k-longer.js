@@ -48,6 +48,7 @@ export default function (data) {
     check(plioResponse, {
         'plio get responses have status 200': (response) => response.status === 200,
     });
+    sleep(2);
 
     // request plio items
     let itemResponse = http.get(itemsEndpoint, params);
@@ -60,6 +61,7 @@ export default function (data) {
         console.log(itemResponse.body);
         console.log(itemResponse);
     }
+    sleep(2);
 
     // create user session
     let sessionPayload = {
@@ -76,6 +78,7 @@ export default function (data) {
         console.log(sessionCreateResponse.body);
         console.log(sessionCreateResponse);
     }
+    sleep(2);
 
     let eventTypes = ['watching', 'question_proceed', 'question_answered', 'paused', 'video_seeked'];
     let eventPayload = {
