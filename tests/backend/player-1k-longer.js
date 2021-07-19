@@ -10,7 +10,7 @@ export let options = {
     { duration: '1m', target: 500 },
     { duration: '1m', target: 750 },
     { duration: '1m', target: 1000 },
-    { duration: '1m', target: 1000 },
+    { duration: '2m', target: 1000 },
     { duration: '1m', target: 750 },
     { duration: '1m', target: 500 },
     { duration: '1m', target: 200 },
@@ -125,5 +125,5 @@ export default function (data) {
         sleep(randomIntBetween(1,2));
     }
 
-    sleep(1);
+    sleep(30);
 }
