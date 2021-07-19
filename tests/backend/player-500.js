@@ -121,5 +121,5 @@ export default function (data) {
         sleep(randomIntBetween(1,2));
     }
 
-    sleep(1);
+    sleep(10);
 }
