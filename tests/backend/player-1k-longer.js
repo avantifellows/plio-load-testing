@@ -89,7 +89,8 @@ export default function (data) {
     };
 
     // create random number of user generated events
-    let random = randomIntBetween(5, 10);
+    // let random = randomIntBetween(5, 10);
+    let random = 5;
     for (let count = 1; count <= random; count++) {
         eventPayload['type'] = randomItem(eventTypes);
         let eventCreateResponse = http.post(eventsEndpoint, JSON.stringify(eventPayload), params);
@@ -100,7 +101,8 @@ export default function (data) {
         check(eventCreateResponse, {
             'event create responses have status 201': (response) => response.status === 201,
         });
-        sleep(randomIntBetween(1,2));
+        // sleep(randomIntBetween(1,2));
+        sleep(2);
     }
 
     sessionPayload = {
@@ -110,7 +112,8 @@ export default function (data) {
     }
 
     // update user session random times
-    random = randomIntBetween(5, 10);
+    // random = randomIntBetween(5, 10);
+    random = 5;
     for (let count = 1; count <= random; count++) {
         sessionPayload['retention'] = sessionPayload['retention'] + ',' + randomIntBetween(0, 3);
         let sessionUpdateResponse = http.put(sessionsEndpoint + `${session.id}/`, JSON.stringify(sessionPayload), params);
@@ -121,7 +124,7 @@ export default function (data) {
         check(sessionUpdateResponse, {
             'session update responses have status 200': (response) => response.status === 200,
         });
-        sleep(randomIntBetween(1,2));
+        sleep(2);
     }
 
     sleep(30);
