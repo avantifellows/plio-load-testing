@@ -43,7 +43,6 @@ export default function (data) {
     if (plioResponse.status != 200) {
         console.log("plioResponse");
         console.log(plioResponse.status);
-        console.log(plioResponse.body);
     }
     let plio = plioResponse.json()
     check(plioResponse, {
@@ -58,7 +57,6 @@ export default function (data) {
     if (itemResponse.status != 200) {
         console.log("itemResponse");
         console.log(itemResponse.status);
-        console.log(itemResponse.body);
     }
 
     // create user session
@@ -69,7 +67,6 @@ export default function (data) {
     if (sessionCreateResponse.status != 201) {
         console.log("sessionCreateResponse");
         console.log(sessionCreateResponse.status);
-        console.log(sessionCreateResponse.body);
     }
     let session = sessionCreateResponse.json();
     check(sessionCreateResponse, {
@@ -92,7 +89,6 @@ export default function (data) {
         if (eventCreateResponse.status != 201) {
             console.log("eventCreateResponse");
             console.log(eventCreateResponse.status);
-            console.log(eventCreateResponse.body);
         }
         check(eventCreateResponse, {
             'event create responses have status 201': (response) => response.status === 201,
@@ -114,7 +110,6 @@ export default function (data) {
         if (sessionUpdateResponse.status != 200) {
             console.log("sessionUpdateResponse");
             console.log(sessionUpdateResponse.status);
-            console.log(sessionUpdateResponse.body);
         }
         check(sessionUpdateResponse, {
             'session update responses have status 200': (response) => response.status === 200,
