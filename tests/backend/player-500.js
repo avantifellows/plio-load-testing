@@ -40,6 +40,11 @@ export default function (data) {
 
     // request plio
     let plioResponse = http.get(plioPlayEndpoint, params);
+    if (plioResponse.status != 200) {
+        console.log("plioResponse");
+        console.log(plioResponse.status);
+        console.log(plioResponse.body);
+    }
     let plio = plioResponse.json()
     check(plioResponse, {
         'plio get responses have status 200': (response) => response.status === 200,
@@ -54,7 +59,6 @@ export default function (data) {
         console.log("itemResponse");
         console.log(itemResponse.status);
         console.log(itemResponse.body);
-        console.log(itemResponse);
     }
 
     // create user session
@@ -62,16 +66,15 @@ export default function (data) {
         'plio': plio.id,
     };
     let sessionCreateResponse = http.post(sessionsEndpoint, JSON.stringify(sessionPayload), params);
-    let session = sessionCreateResponse.json();
-    check(sessionCreateResponse, {
-        'session create responses have status 201': (response) => response.status === 201,
-    });
     if (sessionCreateResponse.status != 201) {
         console.log("sessionCreateResponse");
         console.log(sessionCreateResponse.status);
         console.log(sessionCreateResponse.body);
-        console.log(sessionCreateResponse);
     }
+    let session = sessionCreateResponse.json();
+    check(sessionCreateResponse, {
+        'session create responses have status 201': (response) => response.status === 201,
+    });
 
     let eventTypes = ['watching', 'question_proceed', 'question_answered', 'paused', 'video_seeked'];
     let eventPayload = {
@@ -86,15 +89,14 @@ export default function (data) {
     for (let count = 1; count <= random; count++) {
         eventPayload['type'] = randomItem(eventTypes);
         let eventCreateResponse = http.post(eventsEndpoint, JSON.stringify(eventPayload), params);
-        check(eventCreateResponse, {
-            'event create responses have status 201': (response) => response.status === 201,
-        });
         if (eventCreateResponse.status != 201) {
             console.log("eventCreateResponse");
             console.log(eventCreateResponse.status);
             console.log(eventCreateResponse.body);
-            console.log(eventCreateResponse);
         }
+        check(eventCreateResponse, {
+            'event create responses have status 201': (response) => response.status === 201,
+        });
         sleep(randomIntBetween(1,2));
     }
 
@@ -109,15 +111,14 @@ export default function (data) {
     for (let count = 1; count <= random; count++) {
         sessionPayload['retention'] = sessionPayload['retention'] + ',' + randomIntBetween(0, 3);
         let sessionUpdateResponse = http.put(sessionsEndpoint + `${session.id}/`, JSON.stringify(sessionPayload), params);
-        check(sessionUpdateResponse, {
-            'session update responses have status 200': (response) => response.status === 200,
-        });
         if (sessionUpdateResponse.status != 200) {
             console.log("sessionUpdateResponse");
             console.log(sessionUpdateResponse.status);
             console.log(sessionUpdateResponse.body);
-            console.log(sessionUpdateResponse);
         }
+        check(sessionUpdateResponse, {
+            'session update responses have status 200': (response) => response.status === 200,
+        });
         sleep(randomIntBetween(1,2));
     }
 
