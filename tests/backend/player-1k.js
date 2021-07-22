@@ -100,7 +100,7 @@ export default function (data) {
         check(eventCreateResponse, {
             'event create responses have status 201': (response) => response.status === 201,
         });
-        sleep(randomIntBetween(1,2));
+        sleep(1);
     }
 
     sessionPayload = {
@@ -121,7 +121,7 @@ export default function (data) {
         check(sessionUpdateResponse, {
             'session update responses have status 200': (response) => response.status === 200,
         });
-        sleep(randomIntBetween(1,2));
+        sleep(1);
     }
 
     sleep(15);

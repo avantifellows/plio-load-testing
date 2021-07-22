@@ -10,11 +10,19 @@ export let options = {
     { duration: '5m', target: 500 },
     { duration: '5m', target: 750 },
     { duration: '5m', target: 1000 },
+    { duration: '5m', target: 1250 },
+    { duration: '5m', target: 1500 },
+    { duration: '5m', target: 1750 },
+    { duration: '5m', target: 2000 },
+    { duration: '10m', target: 2000 },
+    { duration: '5m', target: 1750 },
+    { duration: '5m', target: 1500 },
+    { duration: '5m', target: 1250 },
     { duration: '5m', target: 1000 },
-    { duration: '3m', target: 750 },
-    { duration: '2m', target: 500 },
-    { duration: '2m', target: 200 },
-    { duration: '1m', target: 50 },
+    { duration: '5m', target: 750 },
+    { duration: '5m', target: 500 },
+    { duration: '5m', target: 200 },
+    { duration: '2m', target: 50 },
     { duration: '1m', target: 20 },
     { duration: '2m', target: 0 },
   ],
@@ -52,7 +60,7 @@ export default function (data) {
     check(plioResponse, {
         'plio get responses have status 200': (response) => response.status === 200,
     });
-    sleep(5);
+    sleep(2);
 
     // request plio items
     let itemResponse = http.get(itemsEndpoint, params);
@@ -63,7 +71,7 @@ export default function (data) {
     check(itemResponse, {
         'item get responses have status 200': (response) => response.status === 200,
     });
-    sleep(5);
+    sleep(2);
 
     // create user session
     let sessionPayload = {
@@ -78,7 +86,7 @@ export default function (data) {
     check(sessionCreateResponse, {
         'session create responses have status 201': (response) => response.status === 201,
     });
-    sleep(5);
+    sleep(2);
 
     let eventTypes = ['watching', 'question_proceed', 'question_answered', 'paused', 'video_seeked'];
     let eventPayload = {
@@ -124,5 +132,5 @@ export default function (data) {
         sleep(2);
     }
 
-    sleep(30);
+    sleep(120);
 }
