@@ -124,5 +124,5 @@ export default function (data) {
         sleep(2);
     }
 
-    sleep(30);
+    sleep(15);
 }
