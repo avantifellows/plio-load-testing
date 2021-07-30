@@ -22,7 +22,7 @@ This repository is responsible for load testing of Plio environments.
     sudo sysctl -w net.ipv4.ip_local_port_range="1024 65535"
     sudo sysctl -w net.ipv4.tcp_tw_reuse=1
     sudo sysctl -w net.ipv4.tcp_timestamps=1
-    ulimit -n 250000
+    ulimit -n 1000000
 
     # clone this repo
     git clone https://github.com/avantifellows/plio-load-testing
