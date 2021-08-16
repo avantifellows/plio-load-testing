@@ -65,16 +65,16 @@ export default function (data) {
     });
     sleep(2);
 
-    // request plio items
-    let itemResponse = http.get(itemsEndpoint, params);
-    if (itemResponse.status != 200) {
-        console.log("itemResponse");
-        console.log(itemResponse.status);
-    }
-    check(itemResponse, {
-        'item get responses have status 200': (response) => response.status === 200,
-    });
-    sleep(2);
+    // // request plio items
+    // let itemResponse = http.get(itemsEndpoint, params);
+    // if (itemResponse.status != 200) {
+    //     console.log("itemResponse");
+    //     console.log(itemResponse.status);
+    // }
+    // check(itemResponse, {
+    //     'item get responses have status 200': (response) => response.status === 200,
+    // });
+    // sleep(2);
 
     // create user session
     let sessionPayload = {
