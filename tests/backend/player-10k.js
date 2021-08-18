@@ -91,49 +91,49 @@ export default function (data) {
     });
     sleep(2);
 
-    // let eventTypes = ['watching', 'question_proceed', 'question_answered', 'paused', 'video_seeked'];
-    // let eventPayload = {
-    //     'details': {},
-    //     'player_time': randomIntBetween(1, 10),
-    //     'session': session.id,
-    //     'type': randomItem(eventTypes),
-    // };
+    let eventTypes = ['watching', 'question_proceed', 'question_answered', 'paused', 'video_seeked'];
+    let eventPayload = {
+        'details': {},
+        'player_time': randomIntBetween(1, 10),
+        'session': session.id,
+        'type': randomItem(eventTypes),
+    };
 
-    // // create random number of user generated events
-    // let random = randomIntBetween(5, 10);
-    // for (let count = 1; count <= random; count++) {
-    //     eventPayload['type'] = randomItem(eventTypes);
-    //     let eventCreateResponse = http.post(eventsEndpoint, JSON.stringify(eventPayload), params);
-    //     if (eventCreateResponse.status != 201) {
-    //         console.log("eventCreateResponse");
-    //         console.log(eventCreateResponse.status);
-    //     }
-    //     check(eventCreateResponse, {
-    //         'event create responses have status 201': (response) => response.status === 201,
-    //     });
-    //     sleep(2);
-    // }
+    // create random number of user generated events
+    let random = randomIntBetween(5, 10);
+    for (let count = 1; count <= random; count++) {
+        eventPayload['type'] = randomItem(eventTypes);
+        let eventCreateResponse = http.post(eventsEndpoint, JSON.stringify(eventPayload), params);
+        if (eventCreateResponse.status != 201) {
+            console.log("eventCreateResponse");
+            console.log(eventCreateResponse.status);
+        }
+        check(eventCreateResponse, {
+            'event create responses have status 201': (response) => response.status === 201,
+        });
+        sleep(2);
+    }
 
-    // sessionPayload = {
-    //     plio: plio.id,
-    //     retention: "1",
-    //     watch_time: 99,
-    // }
+    sessionPayload = {
+        plio: plio.id,
+        retention: "1",
+        watch_time: 99,
+    }
 
-    // // update user session random times
-    // random = randomIntBetween(5, 10);
-    // for (let count = 1; count <= random; count++) {
-    //     sessionPayload['retention'] = sessionPayload['retention'] + ',' + randomIntBetween(0, 3);
-    //     let sessionUpdateResponse = http.put(sessionsEndpoint + `${session.id}/`, JSON.stringify(sessionPayload), params);
-    //     if (sessionUpdateResponse.status != 200) {
-    //         console.log("sessionUpdateResponse");
-    //         console.log(sessionUpdateResponse.status);
-    //     }
-    //     check(sessionUpdateResponse, {
-    //         'session update responses have status 200': (response) => response.status === 200,
-    //     });
-    //     sleep(2);
-    // }
+    // update user session random times
+    random = randomIntBetween(5, 10);
+    for (let count = 1; count <= random; count++) {
+        sessionPayload['retention'] = sessionPayload['retention'] + ',' + randomIntBetween(0, 3);
+        let sessionUpdateResponse = http.put(sessionsEndpoint + `${session.id}/`, JSON.stringify(sessionPayload), params);
+        if (sessionUpdateResponse.status != 200) {
+            console.log("sessionUpdateResponse");
+            console.log(sessionUpdateResponse.status);
+        }
+        check(sessionUpdateResponse, {
+            'session update responses have status 200': (response) => response.status === 200,
+        });
+        sleep(2);
+    }
 
     sleep(15);
 }
