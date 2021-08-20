@@ -79,7 +79,7 @@ export default function (data) {
 
     // create user session
     let sessionPayload = {
-        'plio': plio.id,
+        'plio': plioId,
     };
     let sessionCreateResponse = http.post(sessionsEndpoint, JSON.stringify(sessionPayload), params);
     if (sessionCreateResponse.status != 201) {
