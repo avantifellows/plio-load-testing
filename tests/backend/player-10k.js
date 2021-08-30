@@ -50,7 +50,6 @@ var params = {
 
 export default function (data) {
     let plioPlayEndpoint = apiEndpoint + `/plios/${plioUuid}/play/`;
-    let itemsEndpoint = apiEndpoint + `/items?plio=${plioId}`;
     let sessionsEndpoint = apiEndpoint + '/sessions/';
     let eventsEndpoint = apiEndpoint + '/events/';
 
@@ -63,17 +62,6 @@ export default function (data) {
     let plio = plioResponse.json()
     check(plioResponse, {
         'plio get responses have status 200': (response) => response.status === 200,
-    });
-    sleep(5);
-
-    // request plio items
-    let itemResponse = http.get(itemsEndpoint, params);
-    if (itemResponse.status != 200) {
-        console.log("itemResponse");
-        console.log(itemResponse.status);
-    }
-    check(itemResponse, {
-        'item get responses have status 200': (response) => response.status === 200,
     });
     sleep(5);
 
