@@ -39,6 +39,7 @@ if (!token) {
     throw new Error("No access token provided!");
 }
 
+var plioId = 6; // or some other plio
 var plioUuid = 'jdzdfnaznb'; // or some other plio
 var params = {
     headers: {
@@ -50,7 +51,6 @@ var params = {
 
 export default function (data) {
     let plioPlayEndpoint = apiEndpoint + `/plios/${plioUuid}/play/`;
-    let itemsEndpoint = apiEndpoint + `/items?plio=${plioUuid}/`;
     let sessionsEndpoint = apiEndpoint + '/sessions/';
     let eventsEndpoint = apiEndpoint + '/events/';
 
@@ -66,20 +66,9 @@ export default function (data) {
     });
     sleep(2);
 
-    // request plio items
-    let itemResponse = http.get(itemsEndpoint, params);
-    if (itemResponse.status != 200) {
-        console.log("itemResponse");
-        console.log(itemResponse.status);
-    }
-    check(itemResponse, {
-        'item get responses have status 200': (response) => response.status === 200,
-    });
-    sleep(2);
-
     // create user session
     let sessionPayload = {
-        'plio': plio.id,
+        'plio': plioId,
     };
     let sessionCreateResponse = http.post(sessionsEndpoint, JSON.stringify(sessionPayload), params);
     if (sessionCreateResponse.status != 201) {
