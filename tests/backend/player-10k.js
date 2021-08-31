@@ -31,7 +31,7 @@ export let options = {
   ],
 };
 
-let apiEndpoint = 'https://staging-backend.plio.in/api/v1';
+let apiEndpoint = 'https://staging-backend-load-testing.plio.in/api/v1';
 
 let token = __ENV.ACCESS_TOKEN;
 if (!token) {
