@@ -3,30 +3,26 @@ import { check, group, sleep } from 'k6';
 import { randomIntBetween, randomItem } from "https://jslib.k6.io/k6-utils/1.1.0/index.js";
 
 export let options = {
-  stages: [
-    { duration: '30s', target: 20 },
-    { duration: '30s', target: 50 },
-    { duration: '30s', target: 100 },
-    { duration: '30s', target: 130 },
-    { duration: '30s', target: 170 },
-    { duration: '30s', target: 230 },
-    { duration: '30s', target: 250 },
-    { duration: '30s', target: 350 },
-    { duration: '30s', target: 420 },
-    { duration: '30s', target: 500 },
-    { duration: '30s', target: 500 },
-    { duration: '30s', target: 500 },
-    { duration: '30s', target: 500 },
-    { duration: '30s', target: 500 },
-    { duration: '30s', target: 400 },
-    { duration: '30s', target: 300 },
-    { duration: '30s', target: 200 },
-    { duration: '30s', target: 100 },
-    { duration: '30s', target: 50 },
-    { duration: '30s', target: 20 },
-    { duration: '60s', target: 0 },
-  ],
-};
+    stages: [
+      { duration: '30s', target: 20 },
+      { duration: '30s', target: 50 },
+      { duration: '30s', target: 100 },
+      { duration: '30s', target: 130 },
+      { duration: '30s', target: 170 },
+      { duration: '30s', target: 230 },
+      { duration: '30s', target: 250 },
+      { duration: '30s', target: 250 },
+      { duration: '30s', target: 250 },
+      { duration: '30s', target: 250 },
+      { duration: '30s', target: 250 },
+      { duration: '30s', target: 250 },
+      { duration: '30s', target: 200 },
+      { duration: '30s', target: 100 },
+      { duration: '30s', target: 50 },
+      { duration: '30s', target: 20 },
+      { duration: '30s', target: 0 },
+    ],
+  };
 
 let apiEndpoint = 'https://staging-backend.plio.in/api/v1';
 
