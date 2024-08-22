@@ -23,7 +23,12 @@ if (!token) {
     throw new Error("No access token provided!");
 }
 
-var plioUuid = 'jdzdfnaznb'; // or some other plio
+let plioUuid = __ENV.PLIO_UUID;
+if (!plioUuid) {
+    throw new Error("No plio uuid provided!");
+}
+
+// var plioUuid = 'jdzdfnaznb'; // or some other plio
 var params = {
     headers: {
         'Authorization': `Bearer ${token}`,
